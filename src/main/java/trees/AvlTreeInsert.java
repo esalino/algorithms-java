@@ -1,6 +1,10 @@
 package trees;
 
 // https://www.hackerrank.com/challenges/self-balancing-tree/problem
+
+// the hackerrank test problems are based on height of a null node being -1 and
+// a leaf being height 0 instead of the usual heights for null and leaf being 0 and 1
+
 public class AvlTreeInsert {
 	
 	static Node insert(Node root, int val) {
@@ -11,7 +15,7 @@ public class AvlTreeInsert {
 			return n;
 		}
 		insertAndBalanceSubtrees(root, val);
-		// Still need to balance root;
+		// Still need to balance root
 		root = balanceSubtree(root);
 		root.ht = getHeight(root) + 1;
 		return root;
@@ -59,6 +63,7 @@ public class AvlTreeInsert {
 		if (balance == 2) {
 			int childBalance = getBalance(node.left);
 			if (childBalance < 0) {
+				// left-right case which if we have will always comes before left-left case
 				Node temp = node.left.right;
 				node.left.right = node.left.right.left;
 				temp.left = node.left;
@@ -68,6 +73,7 @@ public class AvlTreeInsert {
 				node.left.ht = getHeight(node.left);
 				node.ht = getHeight(node);
 			}
+			// left- left case
 			Node temp = node.left;
 			node.left = node.left.right;
 			temp.right = node;
@@ -79,6 +85,7 @@ public class AvlTreeInsert {
 		} else {
 			int childBalance = getBalance(node.right);
 			if (childBalance > 0) {
+				// right-left case which if we have will always comes before right-right case
 				Node temp = node.right.left;
 				node.right.left = node.right.left.right;
 				temp.right = node.right;
@@ -88,6 +95,7 @@ public class AvlTreeInsert {
 				node.right.ht = getHeight(node.right);
 				node.ht = getHeight(node);
 			}
+			// right-right case
 			Node temp = node.right;
 			node.right = node.right.left;
 			temp.left = node;
@@ -106,9 +114,9 @@ public class AvlTreeInsert {
 	}
 	
 	private static int getHeight(Node node) {
-		int leftH = node.left == null ? -1 : node.left.ht;
-		int rightH = node.right == null ? -1 : node.right.ht;
-		return Math.max(leftH, rightH);
+		int leftHeight = node.left == null ? -1 : node.left.ht;
+		int rightHeight = node.right == null ? -1 : node.right.ht;
+		return Math.max(leftHeight, rightHeight);
 	}
 
 }
