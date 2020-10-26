@@ -7,7 +7,7 @@ package trees;
 
 public class AvlTreeInsert {
 
-    static Node insert(Node root, int val) {
+    public static Node insert(Node root, int val) {
         if (root == null) {
             Node n = new Node();
             n.ht = 0;
@@ -22,7 +22,7 @@ public class AvlTreeInsert {
 
     }
 
-    private static Node insertAndBalanceSubtrees(final Node node, int val) {
+    public static Node insertAndBalanceSubtrees(final Node node, int val) {
         if (node == null) {
             return null;
         }
@@ -55,7 +55,7 @@ public class AvlTreeInsert {
         return node;
     }
 
-    private static Node balanceSubtree(Node node) {
+    public static Node balanceSubtree(Node node) {
         int balance = getBalance(node);
         if (balance > -2 && balance < 2) {
             return node;
@@ -107,13 +107,13 @@ public class AvlTreeInsert {
         }
     }
 
-    private static int getBalance(Node node) {
+    public static int getBalance(Node node) {
         int leftHeight = node.left == null ? -1 : node.left.ht;
         int rightHeight = node.right == null ? -1 : node.right.ht;
         return leftHeight - rightHeight;
     }
 
-    private static int getHeight(Node node) {
+    public static int getHeight(Node node) {
         int leftHeight = node.left == null ? -1 : node.left.ht;
         int rightHeight = node.right == null ? -1 : node.right.ht;
         return Math.max(leftHeight, rightHeight);
