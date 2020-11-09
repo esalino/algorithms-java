@@ -39,7 +39,7 @@ public class MakeAnagrams {
                 deletions++;
                 continue;
             }
-            // There is a match so decrement mapA count
+            // There is a match so decrement mapB count
             mapB.put(c, mapB.get(c) - 1);
         }
         return deletions;
